@@ -1,5 +1,19 @@
 let items = [];
 
+function toggleOrderType() {
+    const orderType = document.querySelector('input[name="orderType"]:checked').value;
+    const deliveryFields = document.getElementById('deliveryFields');
+    
+    if (orderType === 'delivery') {
+        deliveryFields.style.display = 'block';
+    } else {
+        deliveryFields.style.display = 'none';
+        document.getElementById('deliveryAddress').value = '';
+        document.getElementById('deliveryCharges').value = '0.00';
+    }
+    updateTable();
+}
+
 function addItem() {
     const name = document.getElementById('itemName').value.trim();
     const qty = parseInt(document.getElementById('itemQty').value);
@@ -27,10 +41,17 @@ function updateTable() {
             <td>${index + 1}</td>
             <td>${item.name}</td>
             <td>${item.qty}</td>
-            <td>$${item.total.toFixed(2)}</td>
+            <td>Rs. ${item.total.toFixed(2)}</td>
         </tr>`;
         tbody.innerHTML += row;
     });
+
+    // Check if delivery charges apply
+    const orderType = document.querySelector('input[name="orderType"]:checked').value;
+    if (orderType === 'delivery') {
+        const deliveryCharges = parseFloat(document.getElementById('deliveryCharges').value) || 0;
+        grandTotal += deliveryCharges;
+    }
 
     document.getElementById('grandTotalText').innerText = grandTotal.toFixed(2);
 }
@@ -41,10 +62,37 @@ function generateReceiptImage() {
     if (!customer) { alert('Please enter a customer name first.'); return; }
     if (items.length === 0) { alert('Please add at least one item.'); return; }
 
+    const orderType = document.querySelector('input[name="orderType"]:checked').value;
+    const deliveryAddress = document.getElementById('deliveryAddress').value.trim();
+    const deliveryCharges = parseFloat(document.getElementById('deliveryCharges').value) || 0;
+
+    if (orderType === 'delivery' && !deliveryAddress) {
+        alert('Please enter a delivery address.');
+        return;
+    }
+
     const now = new Date();
     document.getElementById('recDate').innerText = "DATE: " + now.toISOString().split('T')[0];
     document.getElementById('recTime').innerText = "TIME: " + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}).toUpperCase();
     document.getElementById('recCustomer').innerText = "CUSTOMER: " + customer.toUpperCase();
+    
+    // Update Receipt Order Type details
+    document.getElementById('recOrderType').innerText = "ORDER TYPE: " + orderType.toUpperCase();
+    
+    const recAddressDiv = document.getElementById('recAddress');
+    const recDeliveryRowDiv = document.getElementById('recDeliveryRow');
+
+    if (orderType === 'delivery') {
+        recAddressDiv.innerText = "ADDRESS: " + deliveryAddress.toUpperCase();
+        recAddressDiv.style.display = 'block';
+        
+        document.getElementById('recDeliveryFee').innerText = deliveryCharges.toFixed(2);
+        recDeliveryRowDiv.style.display = 'block';
+    } else {
+        recAddressDiv.style.display = 'none';
+        recDeliveryRowDiv.style.display = 'none';
+    }
+
     document.getElementById('recGrandTotal').innerText = document.getElementById('grandTotalText').innerText;
 
     const receiptItemsBody = document.getElementById('receiptItemsBody');
@@ -55,7 +103,7 @@ function generateReceiptImage() {
             <td>${index + 1}</td>
             <td>${item.name.toUpperCase()}</td>
             <td class="text-center">${item.qty}</td>
-            <td class="text-right">$${item.total.toFixed(2)}</td>
+            <td class="text-right">Rs. ${item.total.toFixed(2)}</td>
         </tr>`;
         receiptItemsBody.innerHTML += row;
     });
@@ -68,7 +116,6 @@ function generateReceiptImage() {
             return;
         }
 
-        // Scale: 3 forces a razor-sharp resolution footprint across small bitmap setups
         html2canvas(target, { scale: 3, logging: false, useCORS: true }).then(async canvas => {
             
             canvas.toBlob(async (blob) => {
@@ -76,7 +123,6 @@ function generateReceiptImage() {
 
                 const file = new File([blob], `receipt_${Date.now()}.png`, { type: 'image/png' });
 
-                // Share link automation block
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     try {
                         await navigator.share({
