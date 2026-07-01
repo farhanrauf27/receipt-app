@@ -56,13 +56,20 @@
 
 <div id="receipt-canvas-wrapper">
     <div id="thermalReceipt" class="thermal-receipt">
-        <h2 class="text-center header-title">MY SELLING BUSINESS</h2>
+        
+        <div class="logo-container text-center" style="margin-bottom: 10px;">
+            <img src="logo.png" id="receiptLogo" alt="Logo" style="width: 80px; height: auto; display: inline-block; filter: contrast(200%) brightness(90%);">
+        </div>
+
+        <h1 class="text-center header-title">NOORHUB</h1>
         <p class="text-center sub-header">THANK YOU FOR SHOPPING!</p>
-        <div class="divider">================================</div>
-        <div class="meta-line" id="recDate">Date: </div>
-        <div class="meta-line" id="recTime">Time: </div>
-        <div class="meta-line" id="recCustomer">Customer: </div>
-        <div class="divider">================================</div>
+        <div class="divider">===============================</div>
+        
+        <div class="meta-line" id="recDate">DATE: </div>
+        <div class="meta-line" id="recTime">TIME: </div>
+        <div class="meta-line" id="recCustomer">CUSTOMER: </div>
+        <div class="divider">===============================</div>
+        
         <table class="receipt-table">
             <thead>
                 <tr>
@@ -75,12 +82,16 @@
             <tbody id="receiptItemsBody">
                 </tbody>
         </table>
-        <div class="divider">================================</div>
+        
+        <div class="divider">===============================</div>
+        
         <div class="text-right grand-total-thermal">
             GRAND TOTAL: $<span id="recGrandTotal">0.00</span>
         </div>
-        <br>
-        <div class="text-center platform-tag">POWERED BY MODULAR WEB</div>
+        
+        <div class="divider" style="margin-top: 15px;">===============================</div>
+        <div class="text-center platform-tag">POWERED BY:</div>
+        <div class="text-center portfolio-link">muhammad-farhan-27.vercel.app</div>
     </div>
 </div>
 

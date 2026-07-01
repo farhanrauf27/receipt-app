@@ -108,83 +108,99 @@ th {
     margin-top: 15px;
 }
 
-/* --- 🔥 HIGH CONTRAST ULTRA-DARK THERMAL CANVAS GENERATOR --- */
+/* --- 🔥 MAXIMIZED THICKNESS STRUCTURAL CLASSES FOR THERMAL HEAT HEADS --- */
 #receipt-canvas-wrapper {
     position: absolute;
     left: -9999px; 
 }
 
 .thermal-receipt {
-    width: 384px; 
+    width: 375px; /* Perfect width constraints for standard 58mm mini pocket rollers */
     background: #ffffff;
-    color: #000000 !important; /* Pure black text forces the highest heat output */
-    padding: 16px;
-    font-family: 'Arial Black', 'Impact', sans-serif; /* Thick fonts print beautifully on thermal paper */
-    font-size: 16px;
-    font-weight: 900; /* Maximize thickness */
-    line-height: 1.5;
+    color: #000000 !important;
+    padding: 12px;
+    font-family: 'Arial Black', 'Impact', 'Trebuchet MS', sans-serif;
+    font-size: 18px; /* Bumped text base visibility baseline */
+    font-weight: 900 !important;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+}
+
+.logo-container {
+    margin-bottom: 8px;
+}
+
+.logo-container svg {
+    filter: drop-shadow(0px 0px 0px #000); /* Guarantees clean vector raster edge lines */
 }
 
 .text-center { text-align: center !important; }
 .text-right { text-align: right !important; }
 
 .header-title { 
-    margin: 0 0 4px 0; 
-    font-size: 24px; 
-    font-weight: 900;
-    letter-spacing: 1px;
+    margin: 4px 0; 
+    font-size: 32px; /* Large striking title scale font config */
+    font-weight: 900 !important;
+    letter-spacing: 2px;
 }
 
 .sub-header { 
     margin: 0; 
     font-size: 14px; 
-    font-weight: 900;
+    font-weight: 900 !important;
 }
 
 .divider {
-    font-size: 16px;
-    font-weight: 900;
-    margin: 8px 0;
+    font-size: 18px;
+    font-weight: 900 !important;
+    margin: 6px 0;
     letter-spacing: -1px;
 }
 
 .meta-line {
-    font-size: 15px;
-    font-weight: 900;
+    font-size: 16px;
+    font-weight: 900 !important;
     margin-bottom: 4px;
 }
 
 .receipt-table { 
     width: 100%; 
-    margin-top: 8px;
+    margin-top: 6px;
     border-collapse: collapse;
 }
 
 .receipt-table th {
     background-color: transparent;
     color: #000000;
-    font-size: 14px;
-    font-weight: 900;
-    border-bottom: 3px solid #000000; /* Solid bold boundary */
-    padding: 6px 0;
+    font-size: 15px;
+    font-weight: 900 !important;
+    border-bottom: 4px solid #000000; /* Extra deep section grid break line */
+    padding: 4px 0;
 }
 
 .receipt-table td {
     color: #000000;
-    font-size: 15px;
-    font-weight: 900;
+    font-size: 17px; /* Enlarged item lines */
+    font-weight: 900 !important;
     border-bottom: 1px dashed #000000;
     padding: 8px 0;
 }
 
 .grand-total-thermal {
-    font-size: 20px; 
-    font-weight: 900;
-    margin-top: 12px;
+    font-size: 24px; /* Highly visible grand checkout pricing marker text */
+    font-weight: 900 !important;
+    margin-top: 8px;
 }
 
 .platform-tag {
-    font-size: 11px; 
-    font-weight: 900;
-    margin-top: 10px;
+    font-size: 12px; 
+    font-weight: 900 !important;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+.portfolio-link {
+    font-size: 14px;
+    font-weight: 900 !important;
+    word-break: break-all;
 }

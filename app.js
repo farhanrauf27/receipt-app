@@ -42,9 +42,9 @@ function generateReceiptImage() {
     if (items.length === 0) { alert('Please add at least one item.'); return; }
 
     const now = new Date();
-    document.getElementById('recDate').innerText = "Date: " + now.toISOString().split('T')[0];
-    document.getElementById('recTime').innerText = "Time: " + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    document.getElementById('recCustomer').innerText = "Customer: " + customer;
+    document.getElementById('recDate').innerText = "DATE: " + now.toISOString().split('T')[0];
+    document.getElementById('recTime').innerText = "TIME: " + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}).toUpperCase();
+    document.getElementById('recCustomer').innerText = "CUSTOMER: " + customer.toUpperCase();
     document.getElementById('recGrandTotal').innerText = document.getElementById('grandTotalText').innerText;
 
     const receiptItemsBody = document.getElementById('receiptItemsBody');
@@ -53,7 +53,7 @@ function generateReceiptImage() {
     items.forEach((item, index) => {
         const row = `<tr>
             <td>${index + 1}</td>
-            <td>${item.name}</td>
+            <td>${item.name.toUpperCase()}</td>
             <td class="text-center">${item.qty}</td>
             <td class="text-right">$${item.total.toFixed(2)}</td>
         </tr>`;
@@ -68,29 +68,26 @@ function generateReceiptImage() {
             return;
         }
 
-        // Render high-quality resolution layout for thermal printing
-        html2canvas(target, { scale: 3 }).then(async canvas => {
+        // Scale: 3 forces a razor-sharp resolution footprint across small bitmap setups
+        html2canvas(target, { scale: 3, logging: false, useCORS: true }).then(async canvas => {
             
-            // Convert output to file blob container structure
             canvas.toBlob(async (blob) => {
                 if (!blob) { return; }
 
                 const file = new File([blob], `receipt_${Date.now()}.png`, { type: 'image/png' });
 
-                // Check if browser native sharing is unlocked by Vercel's HTTPS
+                // Share link automation block
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     try {
-                        // Kicks open the system sharing pane instantly
                         await navigator.share({
                             files: [file],
-                            title: 'Business Receipt',
+                            title: 'NOORHUB Receipt',
                             text: 'Open receipt with iPrint App'
                         });
                     } catch (error) {
-                        console.log('Share window closed by user.');
+                        console.log('Share drawer operation canceled.');
                     }
                 } else {
-                    // Fail-safe backup download option
                     const link = document.createElement('a');
                     link.download = `receipt_${Date.now()}.png`;
                     link.href = canvas.toDataURL("image/png");
