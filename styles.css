@@ -1,0 +1,153 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+h2 { 
+    text-align: center; 
+    color: #333; 
+    margin-top: 0; 
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label { 
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: bold; 
+    color: #555; 
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.row-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.basket-container {
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 15px;
+}
+
+.basket-container legend {
+    font-weight: bold; 
+    padding: 0 5px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffc107;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+button:hover { 
+    background-color: #e0a800; 
+}
+
+.print-btn {
+    background-color: #000;
+    color: white;
+    margin-top: 20px;
+}
+
+.print-btn:hover { 
+    background-color: #222; 
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 15px; 
+}
+
+th, td { 
+    border-bottom: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: left; 
+}
+
+th { 
+    background-color: #f8f9fa; 
+}
+
+.grand-total-display {
+    text-align: right; 
+    margin-top: 15px;
+}
+
+/* --- THERMAL SCREEN GENERATOR MATRIX --- */
+#receipt-canvas-wrapper {
+    position: absolute;
+    left: -9999px; 
+}
+
+.thermal-receipt {
+    width: 384px; 
+    background: white;
+    color: black;
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.header-title { margin: 0; font-size: 18px; }
+.sub-header { margin: 5px 0 0 0; font-size: 12px; }
+
+.receipt-table { 
+    width: 100%; 
+    margin-top: 10px; 
+}
+
+.receipt-table th, .receipt-table td {
+    font-family: 'Courier New', Courier, monospace;
+    border-bottom: 1px dashed black;
+    padding: 4px 0;
+}
+
+.grand-total-thermal {
+    font-weight: bold; 
+    font-size: 15px; 
+    margin-top: 10px;
+}
+
+.platform-tag {
+    font-size: 10px; 
+    font-style: italic;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Receipt Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<button onclick="connectPrinter()" style="background-color: #007bff; color: white;">Connect Printer via Browser</button>
+<div class="container">
+    <h2>Receipt Generator</h2>
+    
+    <div class="input-group">
+        <label for="customerName">Customer Name</label>
+        <input type="text" id="customerName" placeholder="Enter customer name">
+    </div>
+
+    <fieldset class="basket-container">
+        <legend>Add Item To Basket</legend>
+        <div class="input-group">
+            <label for="itemName">Item Name</label>
+            <input type="text" id="itemName" placeholder="e.g. Shirt">
+        </div>
+        <div class="row-inputs">
+            <div class="input-group" style="flex: 1;">
+                <label for="itemQty">Qty</label>
+                <input type="number" id="itemQty" min="1" placeholder="1">
+            </div>
+            <div class="input-group" style="flex: 1;">
+                <label for="itemPrice">Unit Price</label>
+                <input type="number" id="itemPrice" step="0.01" placeholder="0.00">
+            </div>
+        </div>
+        <button type="button" onclick="addItem()">Add Item Row</button>
+    </fieldset>
+
+    <table id="previewTable">
+        <thead>
+            <tr>
+                <th>Sr#</th>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+    
+    <h3 class="grand-total-display">Grand Total: $<span id="grandTotalText">0.00</span></h3>
+
+    <button class="print-btn" onclick="generateReceiptImage()">Generate & Print Receipt</button>
+</div>
+
+<div id="receipt-canvas-wrapper">
+    <div id="thermalReceipt" class="thermal-receipt">
+        <h3 class="text-center header-title">MY SELLING BUSINESS</h3>
+        <p class="text-center sub-header">Thank You For Shopping!</p>
+        <div>------------------------------------------</div>
+        <div id="recDate">Date: </div>
+        <div id="recTime">Time: </div>
+        <div id="recCustomer" style="font-weight: bold;">Customer: </div>
+        <div>------------------------------------------</div>
+        <table class="receipt-table">
+            <thead>
+                <tr>
+                    <th style="text-align: left; width: 10%;">Sr#</th>
+                    <th style="text-align: left; width: 50%;">Item</th>
+                    <th style="text-align: center; width: 15%;">Qty</th>
+                    <th style="text-align: right; width: 25%;">Total</th>
+                </tr>
+            </thead>
+            <tbody id="receiptItemsBody">
+                </tbody>
+        </table>
+        <div>------------------------------------------</div>
+        <div class="text-right grand-total-thermal">
+            GRAND TOTAL: $<span id="recGrandTotal">0.00</span>
+        </div>
+        <br>
+        <div class="text-center platform-tag">Powered by Modular Web</div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
