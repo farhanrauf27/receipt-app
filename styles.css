@@ -108,7 +108,7 @@ th {
     margin-top: 15px;
 }
 
-/* --- THERMAL SCREEN GENERATOR MATRIX --- */
+/* --- 🔥 HIGH CONTRAST ULTRA-DARK THERMAL CANVAS GENERATOR --- */
 #receipt-canvas-wrapper {
     position: absolute;
     left: -9999px; 
@@ -116,38 +116,75 @@ th {
 
 .thermal-receipt {
     width: 384px; 
-    background: white;
-    color: black;
-    padding: 15px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    line-height: 1.4;
+    background: #ffffff;
+    color: #000000 !important; /* Pure black text forces the highest heat output */
+    padding: 16px;
+    font-family: 'Arial Black', 'Impact', sans-serif; /* Thick fonts print beautifully on thermal paper */
+    font-size: 16px;
+    font-weight: 900; /* Maximize thickness */
+    line-height: 1.5;
 }
 
-.text-center { text-align: center; }
-.text-right { text-align: right; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
 
-.header-title { margin: 0; font-size: 18px; }
-.sub-header { margin: 5px 0 0 0; font-size: 12px; }
+.header-title { 
+    margin: 0 0 4px 0; 
+    font-size: 24px; 
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.sub-header { 
+    margin: 0; 
+    font-size: 14px; 
+    font-weight: 900;
+}
+
+.divider {
+    font-size: 16px;
+    font-weight: 900;
+    margin: 8px 0;
+    letter-spacing: -1px;
+}
+
+.meta-line {
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 4px;
+}
 
 .receipt-table { 
     width: 100%; 
-    margin-top: 10px; 
+    margin-top: 8px;
+    border-collapse: collapse;
 }
 
-.receipt-table th, .receipt-table td {
-    font-family: 'Courier New', Courier, monospace;
-    border-bottom: 1px dashed black;
-    padding: 4px 0;
+.receipt-table th {
+    background-color: transparent;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 900;
+    border-bottom: 3px solid #000000; /* Solid bold boundary */
+    padding: 6px 0;
+}
+
+.receipt-table td {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 900;
+    border-bottom: 1px dashed #000000;
+    padding: 8px 0;
 }
 
 .grand-total-thermal {
-    font-weight: bold; 
-    font-size: 15px; 
-    margin-top: 10px;
+    font-size: 20px; 
+    font-weight: 900;
+    margin-top: 12px;
 }
 
 .platform-tag {
-    font-size: 10px; 
-    font-style: italic;
+    font-size: 11px; 
+    font-weight: 900;
+    margin-top: 10px;
 }
